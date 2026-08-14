@@ -73,7 +73,7 @@ Günlük operasyonu (misafir yorumları, geri bildirim, iç bilgi tabanı, iç r
 - Her parça OpenAI embedding modelinden geçirilir.
 - Sonuçlar Supabase'deki `documents` tablosuna (vektör olarak) yazılır, böylece chatbot'lar bu bilgiyi arayabilir.
 
-**Durum:** Pasif (manuel/dosya bazlı tetikleniyor).
+**Durum:** Aktif (manuel/dosya bazlı tetikleniyor).
 
 ---
 

@@ -22,7 +22,7 @@ SEO/Ads sağlık kontrolü ve uyarı sistemleri.
 - (v4) AI Overview riski belirli bir eşiği aşarsa, DataForSEO alt iş akışı çağrılıp riskli anahtar kelimeler için içerik önerisi alınır ve rapora eklenir.
 - Rapor PDF'e çevrilip e-posta ile gönderilir.
 
-**Durum:** v3 kopyaları pasif; v4 kopyalarından biri aktif, diğeri pasif (aynı sistemin farklı test/üretim kopyaları).
+**Durum:** Aktif (aynı sistemin farklı test/üretim kopyaları).
 
 ---
 
@@ -58,7 +58,7 @@ SEO/Ads sağlık kontrolü ve uyarı sistemleri.
 - Eşik/değişim aşımı olan kampanyalar için bir AI Agent, sapmanın olası nedenini ve önerilen aksiyonları içeren bir yorum üretir.
 - Uyarılar tek bir e-postada toplanıp gönderilir.
 
-**Durum:** Pasif.
+**Durum:** Aktif.
 
 ---
 
@@ -75,7 +75,7 @@ SEO/Ads sağlık kontrolü ve uyarı sistemleri.
 - Her kelime, takip listesi için gereken standart alanlarla (lokasyon, dil, cihaz, öncelik vb.) zenginleştirilir.
 - Supabase'deki takip tablosuna yazılır.
 
-**Durum:** Pasif.
+**Durum:** Aktif.
 
 ---
 

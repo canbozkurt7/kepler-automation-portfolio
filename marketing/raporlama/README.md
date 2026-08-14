@@ -37,7 +37,7 @@ Performans verisini toplayıp rapor/dashboard haline getiren otomasyonlar.
 - Aktif kampanyaların son dönem verisiyle HTML rapor oluşturulur, PDF'e çevrilir.
 - Rapor e-posta eki olarak gönderilir.
 
-**Durum:** Pasif.
+**Durum:** Aktif.
 
 ---
 
@@ -54,7 +54,7 @@ Performans verisini toplayıp rapor/dashboard haline getiren otomasyonlar.
 - Her hafta için sırasıyla kampanya, anahtar kelime, arama terimi ve açık artırma görünürlüğü verisi Google Ads API'den çekilir.
 - Her veri seti formatlanıp ilgili Supabase tablosuna yazılır, sonra bir sonraki haftaya geçilir.
 
-**Durum:** Pasif (tek seferlik/manuel amaçlı).
+**Durum:** Aktif (tek seferlik/manuel amaçlı).
 
 ---
 
@@ -72,7 +72,7 @@ Performans verisini toplayıp rapor/dashboard haline getiren otomasyonlar.
 - HTML, PDF'e çevrilip dosya adı tarihlenir.
 - Rapor e-posta eki olarak gönderilir.
 
-**Durum:** Pasif.
+**Durum:** Aktif.
 
 ---
 

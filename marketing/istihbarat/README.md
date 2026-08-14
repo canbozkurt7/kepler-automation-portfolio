@@ -20,7 +20,7 @@ Rakip ve pazar verisini otomatik toplayan sistemler.
 - Sonuçlar Supabase'e kaydedilir; aynı kelimenin önceki taramasıyla karşılaştırılıp yeni giren/çıkan reklamverenler, başlık değişiklikleri ve pozisyon kaymaları tespit edilir.
 - Anlamlı bir değişiklik varsa, bir AI Agent bulguları yorumlayıp özet bir analiz e-postası hazırlar.
 
-**Durum:** Pasif.
+**Durum:** Aktif.
 
 ---
 
@@ -38,7 +38,7 @@ Rakip ve pazar verisini otomatik toplayan sistemler.
 - Bu haftaki ve geçen haftaki veriler karşılaştırılıp fiyat değişiklikleri tespit edilir; kendi fiyatınla pazar ortalaması karşılaştırılıp konumun (üstünde/altında/eşit) belirlenir.
 - Sonuçlar lokasyon bazlı tablolar halinde HTML e-posta raporuna dönüştürülüp gönderilir.
 
-**Durum:** Pasif.
+**Durum:** Aktif.
 
 ---
 
@@ -56,7 +56,7 @@ Rakip ve pazar verisini otomatik toplayan sistemler.
 - AI Agent, hedef sayfayı okuyup plan adı/fiyat/özellik bilgisini yapılandırılmış veriye çevirir.
 - Yeni veri eskisiyle karşılaştırılır; fark varsa Google Sheets güncellenir, aynıysa hiçbir şey yapılmaz.
 
-**Durum:** Pasif. (Genel amaçlı bir şablon; farklı rakip/ürün sayfaları için yeniden kullanılabilir.)
+**Durum:** Aktif. (Genel amaçlı bir şablon; farklı rakip/ürün sayfaları için yeniden kullanılabilir.)
 
 ---
 
@@ -74,7 +74,7 @@ Rakip ve pazar verisini otomatik toplayan sistemler.
 - 2 veya daha fazla sinyal tetiklenirse reklam "yorgun" sayılır.
 - Aynı gün için daha önce uyarı gönderilmediyse (tekrar önleme kontrolü), Slack kanalına ve e-postaya uyarı gönderilir, log tutulur.
 
-**Durum:** Pasif.
+**Durum:** Aktif.
 
 ---
 
@@ -90,7 +90,7 @@ Rakip ve pazar verisini otomatik toplayan sistemler.
 - Belirlenen arama terimleri için son 12 ayın haftalık/aylık ilgi endeksi çekilir.
 - Sonuçlar tarih bazlı satırlara dönüştürülüp Google Sheets'e eklenir.
 
-**Durum:** Pasif, manuel/periyodik kontrol amaçlı.
+**Durum:** Aktif, manuel/periyodik kontrol amaçlı.
 
 ---
 

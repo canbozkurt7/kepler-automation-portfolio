@@ -20,7 +20,7 @@ Müşteri iletişimi ve büyüme kanallarını otomatikleştiren sistemler.
 - Kullanıcı bazlı konuşma geçmişi hafızada tutulur.
 - Yanıt Instagram DM olarak geri gönderilir.
 
-**Durum:** Pasif.
+**Durum:** Aktif.
 
 ---
 
@@ -35,7 +35,7 @@ Müşteri iletişimi ve büyüme kanallarını otomatikleştiren sistemler.
 **Akış özeti:**
 - Şu an yalnızca tetikleyici node'lar tanımlı; asıl e-posta içeriği/akış mantığı henüz eklenmemiş.
 
-**Durum:** Pasif, kurulum aşamasında.
+**Durum:** Aktif, kurulum aşamasında.
 
 ---
 
