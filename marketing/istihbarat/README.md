@@ -1,109 +1,109 @@
-[← Ana sayfa](../../README.md)
+[← Home](../../README.md)
 
-# 📊 Marketing > İstihbarat
+# 📊 Marketing > Intelligence
 
-Rakip ve pazar verisini otomatik toplayan sistemler.
+Systems that automatically collect competitor and market data.
 
 ---
 
 ## Google Ads Competitor Keyword Monitor
 
-**Ne işe yarıyor:** Manuel olarak belirlenmiş bir anahtar kelime listesi için haftalık olarak canlı Google arama sonuçlarındaki reklamları tarayan, hangi rakiplerin hangi kelimede reklam verdiğini ve reklam metni/pozisyon değişikliklerini hafta-üstü-hafta karşılaştırıp anlamlı bir değişiklik olduğunda AI destekli bir özet e-posta gönderen bir rekabet istihbaratı sistemi.
+**What it does:** A competitive intelligence system that scans live Google search result ads weekly for a manually defined list of keywords, compares which competitors are advertising on which keyword and any changes in ad copy/position week-over-week, and sends an AI-assisted summary email when a meaningful change is detected.
 
-**Tetikleyici:** Zamanlanmış — haftalık.
+**Trigger:** Scheduled — weekly.
 
-**Kullanılan araçlar/entegrasyonlar:** SerpAPI (canlı Google arama sonuçları), Supabase, AI Agent (LLM destekli analiz), Gmail.
+**Tools/integrations used:** SerpAPI (live Google search results), Supabase, AI Agent (LLM-powered analysis), Gmail.
 
-**Akış özeti:**
-- Supabase'deki aktif anahtar kelime listesi okunur.
-- Her kelime için SerpAPI üzerinden o anki Google reklamları (pozisyon, marka, başlık, açıklama) çekilir ve reklamveren adı normalize edilir.
-- Sonuçlar Supabase'e kaydedilir; aynı kelimenin önceki taramasıyla karşılaştırılıp yeni giren/çıkan reklamverenler, başlık değişiklikleri ve pozisyon kaymaları tespit edilir.
-- Anlamlı bir değişiklik varsa, bir AI Agent bulguları yorumlayıp özet bir analiz e-postası hazırlar.
+**Flow summary:**
+- The active keyword list is read from Supabase.
+- For each keyword, the current Google ads (position, brand, headline, description) are pulled via SerpAPI and the advertiser name is normalized.
+- Results are saved to Supabase; compared against the previous scan of the same keyword to detect newly entered/exited advertisers, headline changes, and position shifts.
+- If there's a meaningful change, an AI Agent interprets the findings and drafts a summary analysis email.
 
-**Durum:** Aktif.
+**Status:** Active.
 
 ---
 
 ## Hotel Competitive Price Monitoring
 
-**Ne işe yarıyor:** SAW/RIX/KUL havalimanı lokasyonlarındaki rakip otellerin fiyatlarını haftalık olarak tarayıp kendi fiyatlarınla karşılaştıran, pazar ortalaması ve fiyat değişikliklerini bir e-posta raporunda özetleyen bir rekabetçi fiyat izleme sistemi.
+**What it does:** A competitive price monitoring system that weekly scans competitor hotel prices at the SAW/RIX/KUL airport locations, compares them against your own prices, and summarizes the market average and price changes in an email report.
 
-**Tetikleyici:** Zamanlanmış — haftalık, Pazartesi 08:00.
+**Trigger:** Scheduled — weekly, Monday 08:00.
 
-**Kullanılan araçlar/entegrasyonlar:** Apify (Booking.com scraping), Supabase, Google Sheets (kendi fiyatların), Gmail.
+**Tools/integrations used:** Apify (Booking.com scraping), Supabase, Google Sheets (own prices), Gmail.
 
-**Akış özeti:**
-- Check-in/check-out tarihleri otomatik hesaplanır (bugünden +14/+15 gün).
-- Her lokasyon için Apify üzerinden Booking.com'daki otel fiyatları taranıp Supabase'e kaydedilir.
-- Bu haftaki ve geçen haftaki veriler karşılaştırılıp fiyat değişiklikleri tespit edilir; kendi fiyatınla pazar ortalaması karşılaştırılıp konumun (üstünde/altında/eşit) belirlenir.
-- Sonuçlar lokasyon bazlı tablolar halinde HTML e-posta raporuna dönüştürülüp gönderilir.
+**Flow summary:**
+- Check-in/check-out dates are calculated automatically (today +14/+15 days).
+- For each location, hotel prices on Booking.com are scraped via Apify and saved to Supabase.
+- This week's and last week's data are compared to detect price changes; your own price is compared against the market average to determine position (above/below/equal).
+- Results are turned into location-based tables in an HTML email report and sent.
 
-**Durum:** Aktif.
+**Status:** Active.
 
 ---
 
 ## 4 Track Competitor Website Updates
 
-**Ne işe yarıyor:** Bir rakip/referans web sitesinin fiyatlandırma sayfasını düzenli olarak AI destekli scraping ile tarayıp fiyat/plan değişikliği olup olmadığını tespit eden, değişiklik varsa kayıt tablosunu güncelleyen genel amaçlı bir fiyat takip şablonu.
+**What it does:** A general-purpose price tracking template that regularly scans a competitor/reference website's pricing page via AI-assisted scraping to detect price/plan changes, updating a record table if a change is found.
 
-**Tetikleyici:** Zamanlanmış — günlük.
+**Trigger:** Scheduled — daily.
 
-**Kullanılan araçlar/entegrasyonlar:** AI Agent (LLM destekli sayfa okuma/ayrıştırma), bir proxy/scraping servisi, Google Sheets.
+**Tools/integrations used:** AI Agent (LLM-powered page reading/parsing), a proxy/scraping service, Google Sheets.
 
-**Akış özeti:**
-- Takip edilecek URL ve parametreler tanımlanır.
-- Google Sheets'teki son bilinen fiyat verisi okunur.
-- AI Agent, hedef sayfayı okuyup plan adı/fiyat/özellik bilgisini yapılandırılmış veriye çevirir.
-- Yeni veri eskisiyle karşılaştırılır; fark varsa Google Sheets güncellenir, aynıysa hiçbir şey yapılmaz.
+**Flow summary:**
+- The URL to track and its parameters are defined.
+- The last known price data is read from Google Sheets.
+- The AI Agent reads the target page and converts plan name/price/feature info into structured data.
+- New data is compared against the old; if there's a difference, Google Sheets is updated, otherwise nothing happens.
 
-**Durum:** Aktif. (Genel amaçlı bir şablon; farklı rakip/ürün sayfaları için yeniden kullanılabilir.)
+**Status:** Active. (A general-purpose template; reusable for different competitor/product pages.)
 
 ---
 
 ## Meta Ads Creative Fatigue Detection
 
-**Ne işe yarıyor:** Meta (Facebook/Instagram) reklamlarının performansını günlük olarak izleyip hangi reklam kreatiflerinin "yorulduğunu" (creative fatigue — tekrar izlenme yorgunluğu) otomatik tespit eden ve ekibe Slack üzerinden uyarı gönderen bir sistem.
+**What it does:** A system that monitors Meta (Facebook/Instagram) ad performance daily, automatically detects which ad creatives are experiencing "creative fatigue" (viewer fatigue from repeated exposure), and alerts the team via Slack.
 
-**Tetikleyici:** Zamanlanmış — haftalık, Pazartesi 08:00.
+**Trigger:** Scheduled — weekly, Monday 08:00.
 
-**Kullanılan araçlar/entegrasyonlar:** Meta Marketing API (Insights), Supabase, Slack, Gmail.
+**Tools/integrations used:** Meta Marketing API (Insights), Supabase, Slack, Gmail.
 
-**Akış özeti:**
-- Son 14 günün günlük reklam performans verisi (CTR, frequency, CPM, gösterim vb.) Meta API'den çekilir ve veritabanına yazılır.
-- Her reklam için tüm geçmiş veri çekilip 3 sinyal hesaplanır: CTR düşüşü (%20+), yüksek frequency (aynı kişiye 3+ gösterim), CPM artışı + CTR düşüşü kombinasyonu.
-- 2 veya daha fazla sinyal tetiklenirse reklam "yorgun" sayılır.
-- Aynı gün için daha önce uyarı gönderilmediyse (tekrar önleme kontrolü), Slack kanalına ve e-postaya uyarı gönderilir, log tutulur.
+**Flow summary:**
+- The last 14 days of daily ad performance data (CTR, frequency, CPM, impressions, etc.) is pulled from the Meta API and written to the database.
+- For each ad, the full history is pulled and 3 signals are calculated: CTR drop (20%+), high frequency (3+ impressions to the same person), and a CPM increase + CTR drop combination.
+- If 2 or more signals are triggered, the ad is considered "fatigued."
+- If no alert has already been sent that day (duplicate-prevention check), an alert is sent to the Slack channel and by email, and logged.
 
-**Durum:** Aktif.
+**Status:** Active.
 
 ---
 
 ## Google Trends
 
-**Ne işe yarıyor:** Havalimanı "nap room" / kapsül otel kavramıyla ilgili arama ilgisini (search interest) farklı lokasyonlar için karşılaştırıp bir Google Sheet'e zaman serisi olarak kaydeden basit bir pazar-ilgisi takip aracı.
+**What it does:** A simple market-interest tracking tool that compares search interest related to the airport "nap room" / capsule hotel concept across different locations and logs it as a time series to a Google Sheet.
 
-**Tetikleyici:** Manuel çalıştırma.
+**Trigger:** Manual run.
 
-**Kullanılan araçlar/entegrasyonlar:** SerpAPI (Google Trends verisi), Google Sheets.
+**Tools/integrations used:** SerpAPI (Google Trends data), Google Sheets.
 
-**Akış özeti:**
-- Belirlenen arama terimleri için son 12 ayın haftalık/aylık ilgi endeksi çekilir.
-- Sonuçlar tarih bazlı satırlara dönüştürülüp Google Sheets'e eklenir.
+**Flow summary:**
+- The weekly/monthly interest index for the last 12 months is pulled for the defined search terms.
+- Results are converted into date-based rows and added to Google Sheets.
 
-**Durum:** Aktif, manuel/periyodik kontrol amaçlı.
+**Status:** Active, for manual/periodic checking.
 
 ---
 
 ## kepler-nationality-ad-copy (Skill)
 
-**Ne işe yarıyor:** SAW (İstanbul), KUL (Kuala Lumpur) ve RIX (Riga) havalimanı kapsül otel kampanyaları için, her lokasyonun gerçek misafir milliyeti ve arama dili dağılımına göre farklılaştırılmış (tek bir genel script yerine) yüksek CTR'li Google Ads başlık/açıklama metinleri üreten bir Claude Code yeteneği (skill).
+**What it does:** A Claude Code skill that generates high-CTR Google Ads headline/description copy for the SAW (Istanbul), KUL (Kuala Lumpur), and RIX (Riga) airport capsule hotel campaigns, tailored to each location's actual guest nationality and search-language mix (instead of a single generic script).
 
-**Tetikleyici:** Talep üzerine ("SAW için headline yaz" gibi).
+**Trigger:** On demand (e.g. "write a headline for SAW").
 
-**Kullanılan araçlar/entegrasyonlar:** Claude Code skill sistemi, Google Ads kampanya bağlamı.
+**Tools/integrations used:** Claude Code skill system, Google Ads campaign context.
 
-**Akış özeti:**
-- Kullanıcı bir lokasyon (SAW/KUL/RIX) ve kampanya tipi (Search/PMax) belirtir.
-- Skill, o lokasyonun misafir milliyet/dil profiline uygun başlık, uzun başlık ve açıklama metinleri üretir.
+**Flow summary:**
+- The user specifies a location (SAW/KUL/RIX) and campaign type (Search/PMax).
+- The skill generates headline, long headline, and description copy matching that location's guest nationality/language profile.
 
-**Durum:** Aktif olarak kullanılıyor.
+**Status:** Actively in use.
