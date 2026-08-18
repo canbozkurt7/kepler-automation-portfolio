@@ -1,93 +1,93 @@
-[← Ana sayfa](../README.md)
+[← Home](../README.md)
 
-# 🔧 Operasyonel İşler
+# 🔧 Operations
 
-Günlük operasyonu (misafir yorumları, geri bildirim, iç bilgi tabanı, iç raporlama) otomatikleştiren sistemler.
+Systems that automate daily operations (guest reviews, feedback, internal knowledge base, internal reporting).
 
 ---
 
 ## Multi-Business Google Reviews
 
-**Ne işe yarıyor:** Kepler Club'ın farklı lokasyonlarındaki (SAW, KUL Airside/Landside, RIX Airside/Landside) Google Business Profile yorumlarını otomatik izleyen, yeni yorumları tespit edip AI ile yanıt taslağı üreten, düşük puanlı yorumlarda ilgili ekibe WhatsApp üzerinden anlık uyarı gönderen ve tüm yorum verisini Google Sheets ile Supabase'e kaydeden çok işletmeli bir yorum yönetim sistemi.
+**What it does:** A multi-business review management system that automatically monitors Google Business Profile reviews across Kepler Club's different locations (SAW, KUL Airside/Landside, RIX Airside/Landside), detects new reviews and generates AI-drafted replies, sends instant WhatsApp alerts to the relevant team for low-rated reviews, and logs all review data to Google Sheets and Supabase.
 
-**Tetikleyici:** Tasarım her lokasyon için ayrı bir Google Business Profile tetikleyicisiyle (yeni yorum geldiğinde) otomatik çalışacak şekilde; şu an prodüksiyonda manuel çalıştırma modunda.
+**Trigger:** Designed to run automatically via a separate Google Business Profile trigger per location (when a new review comes in); currently running in manual-run mode in production.
 
-**Kullanılan araçlar/entegrasyonlar:** Google Business Profile API, Google Sheets, Supabase, WhatsApp Business API, OpenAI destekli AI Agent (LangChain).
+**Tools/integrations used:** Google Business Profile API, Google Sheets, Supabase, WhatsApp Business API, OpenAI-powered AI Agent (LangChain).
 
-**Akış özeti:**
-- Her lokasyondan gelen yorumlar Google Sheets'teki mevcut kayıtlarla karşılaştırılıp yeni olanlar filtrelenir.
-- Yeni yorumlar standart formata çevrilip lokasyona göre yönlendirilir.
-- AI Agent otomatik bir yanıt taslağı üretir, ilgili Google Business Profile üzerinden yoruma cevap olarak gönderilir.
-- 5 puan altındaki yorumlar için WhatsApp üzerinden dahili ekibe uyarı gönderilir.
-- Tüm yorumlar Google Sheets ve Supabase'e loglanır.
+**Flow summary:**
+- Reviews coming from each location are compared against existing records in Google Sheets to filter out the new ones.
+- New reviews are converted to a standard format and routed by location.
+- The AI Agent generates a draft reply automatically, which is sent back as a reply to the review via the relevant Google Business Profile.
+- Reviews rated below 5 stars trigger a WhatsApp alert to the internal team.
+- All reviews are logged to Google Sheets and Supabase.
 
-**Durum:** Aktif (üretim tetikleyicisi henüz bağlanmadı, manuel çalıştırılıyor).
-
----
-
-## Aylık Resepsiyonist Yorum Sayısı
-
-**Ne işe yarıyor:** Misafir yorumlarında geçen resepsiyonist isimlerinin ay içindeki geçme (mention) sayısını hesaplayıp ilgili yöneticilere e-posta ile rapor gönderen bir performans takip sistemi.
-
-**Tetikleyici:** Zamanlanmış — ayın 15'i ve son günü, saat 09:00.
-
-**Kullanılan araçlar/entegrasyonlar:** Supabase (RPC sorgusu ile mention sayımı), Gmail.
-
-**Akış özeti:**
-- Belirlenen günlerde tetiklenir, Supabase'den bir fonksiyon çağrısıyla personel bazlı mention sayıları alınır.
-- Sonuçlar HTML tabloya dönüştürülür.
-- İlgili yöneticilere e-posta ile gönderilir.
-
-**Durum:** Aktif.
+**Status:** Active (production trigger not yet connected, run manually).
 
 ---
 
-## Whatsapp Chatbot - Supabase v2
+## Monthly Receptionist Mention Count
 
-**Ne işe yarıyor:** Kepler Club'ın WhatsApp üzerinden gelen misafir mesajlarını (metin, sesli not, görsel) karşılayıp bir AI Agent aracılığıyla otomatik yanıtlayan, rezervasyon ve genel bilgi sorularına destek olan müşteri hizmetleri chatbot'u.
+**What it does:** A performance tracking system that calculates how many times receptionist names are mentioned in guest reviews during the month and emails the report to the relevant managers.
 
-**Tetikleyici:** Webhook — gelen WhatsApp mesajında otomatik tetiklenir.
+**Trigger:** Scheduled — on the 15th and last day of the month at 09:00.
 
-**Kullanılan araçlar/entegrasyonlar:** WhatsApp Business API, AI Agent (LangChain, LLM destekli), ses transkripsiyonu ve görsel analiz modelleri, Postgres tabanlı sohbet hafızası, harici bir MCP sunucusu üzerinden müsaitlik kontrolü/rezervasyon/fiyat hesaplama araçları.
+**Tools/integrations used:** Supabase (mention counting via RPC query), Gmail.
 
-**Akış özeti:**
-- Gelen mesaj tipine göre (metin/ses/görsel) ayrı işlenir; ses metne, görsel analiz metnine çevrilir.
-- AI Agent, yalnızca tanımlı araçlardan (doküman arama, müsaitlik kontrolü, fiyat hesaplama) beslenerek yanıt üretir — genel bilgisinden varsayım yapmaması için sınırlandırılmıştır.
-- Kullanıcı bazlı konuşma geçmişi hafızada tutulur.
-- Yanıt aynı WhatsApp sohbetine geri gönderilir.
+**Flow summary:**
+- Triggered on the set days; per-staff mention counts are retrieved via a Supabase function call.
+- Results are converted into an HTML table.
+- Sent by email to the relevant managers.
 
-**Durum:** Aktif.
+**Status:** Active.
+
+---
+
+## WhatsApp Chatbot - Supabase v2
+
+**What it does:** A customer service chatbot that receives guest messages coming in via WhatsApp (text, voice note, image) for Kepler Club and automatically replies through an AI Agent, supporting reservation and general information questions.
+
+**Trigger:** Webhook — automatically triggered on an incoming WhatsApp message.
+
+**Tools/integrations used:** WhatsApp Business API, AI Agent (LangChain, LLM-powered), voice transcription and image analysis models, Postgres-based chat memory, availability check/reservation/price calculation tools via an external MCP server.
+
+**Flow summary:**
+- Incoming messages are processed differently depending on type (text/voice/image); voice is converted to text, images to analysis text.
+- The AI Agent generates its response by relying only on defined tools (document search, availability check, price calculation) — it's restricted from making assumptions from general knowledge.
+- Conversation history is kept in memory per user.
+- The reply is sent back to the same WhatsApp conversation.
+
+**Status:** Active.
 
 ---
 
 ## Upload data to Supabase
 
-**Ne işe yarıyor:** Google Drive'a yüklenen dokümanları (SSS, oda/hizmet bilgileri vb.) otomatik olarak parçalayıp embedding'e çevirip Supabase'deki vektör veritabanına yükleyen, chatbot'ların (WhatsApp/Instagram) bilgi kaynağını güncel tutan bir altyapı otomasyonu.
+**What it does:** An infrastructure automation that automatically chunks documents uploaded to Google Drive (FAQs, room/service info, etc.), converts them into embeddings, and uploads them to Supabase's vector database, keeping the knowledge source for the chatbots (WhatsApp/Instagram) up to date.
 
-**Tetikleyici:** Google Drive'da belirli bir klasöre yeni dosya eklendiğinde otomatik (polling, dakikada bir kontrol) + manuel çalıştırma seçeneği.
+**Trigger:** Automatic when a new file is added to a specific Google Drive folder (polling, checked every minute) + manual run option.
 
-**Kullanılan araçlar/entegrasyonlar:** Google Drive, OpenAI Embeddings, Supabase Vector Store (LangChain).
+**Tools/integrations used:** Google Drive, OpenAI Embeddings, Supabase Vector Store (LangChain).
 
-**Akış özeti:**
-- Yeni dosya tespit edilince indirilir, metin parçalarına (chunk) bölünür.
-- Her parça OpenAI embedding modelinden geçirilir.
-- Sonuçlar Supabase'deki `documents` tablosuna (vektör olarak) yazılır, böylece chatbot'lar bu bilgiyi arayabilir.
+**Flow summary:**
+- When a new file is detected, it's downloaded and split into text chunks.
+- Each chunk is passed through the OpenAI embedding model.
+- Results are written (as vectors) into Supabase's `documents` table, so the chatbots can search this information.
 
-**Durum:** Aktif (manuel/dosya bazlı tetikleniyor).
+**Status:** Active (triggered manually/per file).
 
 ---
 
-## Slack → Google Sheets Misafir Geri Bildirim (OCR)
+## Slack → Google Sheets Guest Feedback (OCR)
 
-**Ne işe yarıyor:** Slack kanallarına metin veya görsel olarak düşen misafir geri bildirim formlarını otomatik ayrıştırıp (OCR ile, Türkçe destekli) Google Sheets'e kaydeden bir Node.js uygulaması.
+**What it does:** A Node.js application that automatically parses guest feedback forms dropped into Slack channels as text or images (via OCR, with Turkish support) and logs them to Google Sheets.
 
-**Tetikleyici:** Slack'e yeni mesaj/görsel düştüğünde (bot event-driven), ayrıca çevrimdışı kalınan mesajlar için yakalama (catch-up) modu var.
+**Trigger:** When a new message/image is posted to Slack (bot event-driven), plus a catch-up mode for messages missed while offline.
 
-**Kullanılan araçlar/entegrasyonlar:** Slack API, Tesseract.js (OCR), Google Sheets API (Service Account), Node.js. Windows açılışında Task Scheduler ile otomatik başlıyor.
+**Tools/integrations used:** Slack API, Tesseract.js (OCR), Google Sheets API (Service Account), Node.js. Starts automatically via Task Scheduler on Windows startup.
 
-**Akış özeti:**
-- Slack kanalındaki form gönderimleri (İsim, Tarih, Resepsiyonist, Puan vb. alanlar) tespit edilir.
-- Görsel ise OCR ile metne çevrilir.
-- Ayrıştırılan veri doğrulanıp tekrar kayıt önlenerek (state tracking) Google Sheets'e satır olarak eklenir.
+**Flow summary:**
+- Form submissions in the Slack channel (Name, Date, Receptionist, Rating, etc. fields) are detected.
+- If it's an image, it's converted to text via OCR.
+- The parsed data is validated, duplicate entries are prevented (state tracking), and it's added as a row to Google Sheets.
 
-**Durum:** Aktif, sürekli çalışıyor (Windows servis olarak).
+**Status:** Active, running continuously (as a Windows service).
