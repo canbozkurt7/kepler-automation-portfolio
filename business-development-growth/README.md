@@ -1,50 +1,50 @@
-[← Ana sayfa](../README.md)
+[← Home](../README.md)
 
 # 🚀 Business Development / Growth
 
-Müşteri iletişimi ve büyüme kanallarını otomatikleştiren sistemler.
+Systems that automate customer communication and growth channels.
 
 ---
 
 ## Instagram DM Replier
 
-**Ne işe yarıyor:** Kepler Club'ın Instagram hesabına gelen direkt mesajları otomatik karşılayıp bir AI Agent aracılığıyla, işletmeye özel bilgi tabanından (fiyatlar, hizmetler, SSS) yanıt üreten bir müşteri hizmetleri chatbot'u.
+**What it does:** A customer service chatbot that automatically responds to direct messages coming into Kepler Club's Instagram account, using an AI Agent to generate answers from a business-specific knowledge base (prices, services, FAQs).
 
-**Tetikleyici:** Webhook — Instagram'a yeni mesaj geldiğinde otomatik tetiklenir.
+**Trigger:** Webhook — automatically triggered when a new message arrives on Instagram.
 
-**Kullanılan araçlar/entegrasyonlar:** Instagram Messaging API, AI Agent (Anthropic Claude Haiku), vektör tabanlı bilgi tabanı (Supabase), Postgres tabanlı sohbet hafızası.
+**Tools/integrations used:** Instagram Messaging API, AI Agent (Anthropic Claude Haiku), vector-based knowledge base (Supabase), Postgres-based chat memory.
 
-**Akış özeti:**
-- Gelen mesaj boş değilse AI Agent'a iletilir.
-- Agent, işletmeye özel bilgi tabanından (hangi lokasyona ait olduğu anlaşılarak) ilgili bilgiyi arayıp yanıt üretir; kayıp eşya, rezervasyon bilgisi ekranı, kapsül oda görseli gibi özel durumlar için önceden tanımlı standart yanıtlar var.
-- Kullanıcı bazlı konuşma geçmişi hafızada tutulur.
-- Yanıt Instagram DM olarak geri gönderilir.
+**Flow summary:**
+- If the incoming message isn't empty, it's passed to the AI Agent.
+- The Agent looks up relevant information from the business-specific knowledge base (identifying which location it belongs to) and generates a response; there are predefined standard responses for special cases like lost items, reservation info screens, and capsule room images.
+- Conversation history is kept in memory per user.
+- The response is sent back as an Instagram DM.
 
-**Durum:** Aktif.
+**Status:** Active.
 
 ---
 
 ## Kepler Club Mailing
 
-**Ne işe yarıyor:** Yeni bir mailing/e-posta pazarlama entegrasyonunun (Resend üzerinden) ilk kurulum adımı — yeni kişi (contact) oluşturulduğunda tetiklenecek şekilde tasarlanmış, henüz geliştirme/kurulum aşamasında bir otomasyon.
+**What it does:** The initial setup step for a new mailing/email marketing integration (via Resend) — an automation designed to trigger when a new contact is created, currently still in the development/setup stage.
 
-**Tetikleyici:** Yeni kişi oluşturma olayı (Resend) + manuel test tetikleyicisi.
+**Trigger:** New contact creation event (Resend) + manual test trigger.
 
-**Kullanılan araçlar/entegrasyonlar:** Resend (e-posta gönderim platformu).
+**Tools/integrations used:** Resend (email sending platform).
 
-**Akış özeti:**
-- Şu an yalnızca tetikleyici node'lar tanımlı; asıl e-posta içeriği/akış mantığı henüz eklenmemiş.
+**Flow summary:**
+- Currently only the trigger nodes are defined; the actual email content/flow logic hasn't been added yet.
 
-**Durum:** Aktif, kurulum aşamasında.
+**Status:** Active, in setup.
 
 ---
 
 ## ElevenLabs AI Assistant
 
-**Ne işe yarıyor:** Sesli AI asistan — misafir/müşteri sorularını sesli olarak yanıtlayan bir konuşma agent'ı.
+**What it does:** A voice AI assistant — a conversational agent that answers guest/customer questions by voice.
 
-**Tetikleyici:** Talep üzerine (sesli arama/konuşma başlatıldığında).
+**Trigger:** On demand (when a voice call/conversation is started).
 
-**Kullanılan araçlar/entegrasyonlar:** ElevenLabs Agents platformu.
+**Tools/integrations used:** ElevenLabs Agents platform.
 
-**Durum:** Kuruldu; entegrasyon/erişim ayarları üzerinde çalışılıyor.
+**Status:** Set up; work in progress on integration/access settings.
