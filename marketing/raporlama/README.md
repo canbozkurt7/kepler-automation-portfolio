@@ -1,92 +1,92 @@
-[← Ana sayfa](../../README.md)
+[← Home](../../README.md)
 
-# 📊 Marketing > Raporlama
+# 📊 Marketing > Reporting
 
-Performans verisini toplayıp rapor/dashboard haline getiren otomasyonlar.
+Automations that collect performance data and turn it into reports/dashboards.
 
 ---
 
-## Google Ads Aylık Karşılaştırma Raporu
+## Google Ads Monthly Comparison Report
 
-**Ne işe yarıyor:** Google Ads hesabındaki tüm aktif kampanyaların ay-üstü-ay (month-over-month) trafik/dönüşüm/gelir karşılaştırmasını gösteren bir grafik/rapor sayfası üreten Python scripti (sunum destesinin bir sayfasına manuel olarak eklenmek üzere).
+**What it does:** A Python script that generates a chart/report page showing month-over-month traffic/conversion/revenue comparison for all active campaigns in the Google Ads account (to be manually added to a slide in a presentation deck).
 
-**Tetikleyici:** Windows Task Scheduler — ayın 10'u ve 20'si, saat 11:00.
+**Trigger:** Windows Task Scheduler — on the 10th and 20th of the month, at 11:00.
 
-**Kullanılan araçlar/entegrasyonlar:** Google Ads API, Python (görsel/grafik üretimi).
+**Tools/integrations used:** Google Ads API, Python (chart/image generation).
 
-**Akış özeti:**
-- Google Ads API'den dönem karşılaştırmalı (bu ay 1→X vs geçen ay 1→X) kampanya verisi çekilir.
-- Trafik, dönüşüm ve gelir için 3 ayrı tablo halinde, iyileşen/kötüleşen/yeni-aktif kampanyaları renk kodlarıyla gösteren 1920x1080 bir görsel oluşturulur.
-- Görsel, sunum destesine manuel olarak eklenir (API ile otomatik sayfa üzerine yerleştirme desteklenmediği için bu adım manuel).
+**Flow summary:**
+- Period-over-period campaign data (this month 1→X vs. last month 1→X) is pulled from the Google Ads API.
+- A 1920x1080 image is generated with 3 separate tables for traffic, conversions, and revenue, color-coding improving/worsening/newly-active campaigns.
+- The image is manually added to the presentation deck (since automatic slide placement via API isn't supported, this step is manual).
 
-**Durum:** Aktif, düzenli çalışıyor.
+**Status:** Active, runs regularly.
 
 ---
 
 ## Google Ads Backfill - Report Generator (PDF)
 
-**Ne işe yarıyor:** Google Ads hesabından geçmişe dönük haftalık kampanya/anahtar kelime/arama terimi/görünürlük verisini toplayıp veritabanına yazan, ardından aktif kampanyalar için haftalık bir performans raporu üretip PDF olarak e-posta ile gönderen bir otomasyon.
+**What it does:** An automation that collects historical weekly campaign/keyword/search-term/impression-share data from the Google Ads account and writes it to a database, then generates a weekly performance report for active campaigns and sends it as a PDF by email.
 
-**Tetikleyici:** Haftalık zamanlanmış + manuel çalıştırma seçeneği.
+**Trigger:** Weekly scheduled + manual run option.
 
-**Kullanılan araçlar/entegrasyonlar:** Google Ads API, Supabase, HTML→PDF dönüştürme, Gmail, AI Agent destekli yorum bloğu.
+**Tools/integrations used:** Google Ads API, Supabase, HTML→PDF conversion, Gmail, AI Agent-assisted commentary block.
 
-**Akış özeti:**
-- Haftalık dönemler oluşturulup sırayla işlenir (rate-limit için aralarda bekleme uygulanır).
-- Kampanya/reklam grubu verisi ve anahtar kelime/arama terimi/görünürlük verisi ayrı ayrı çekilip veritabanına yazılır.
-- Aktif kampanyaların son dönem verisiyle HTML rapor oluşturulur, PDF'e çevrilir.
-- Rapor e-posta eki olarak gönderilir.
+**Flow summary:**
+- Weekly periods are generated and processed sequentially (with waits in between for rate-limiting).
+- Campaign/ad group data and keyword/search-term/impression-share data are pulled separately and written to the database.
+- An HTML report is generated from the latest period's data for active campaigns and converted to PDF.
+- The report is sent as an email attachment.
 
-**Durum:** Aktif.
+**Status:** Active.
 
 ---
 
 ## Google Ads Backfill (Jan 26 - Today)
 
-**Ne işe yarıyor:** Belirli bir başlangıç tarihinden bugüne kadar olan haftalık Google Ads verisini (kampanya, anahtar kelime, arama terimi, açık artırma/görünürlük istatistikleri) geriye dönük olarak veritabanına dolduran bir tek seferlik/periyodik veri tamamlama (backfill) otomasyonu.
+**What it does:** A one-time/periodic backfill automation that retroactively fills the database with weekly Google Ads data (campaign, keyword, search term, auction/impression-share stats) from a specific start date to today.
 
-**Tetikleyici:** Manuel çalıştırma.
+**Trigger:** Manual run.
 
-**Kullanılan araçlar/entegrasyonlar:** Google Ads API, Supabase.
+**Tools/integrations used:** Google Ads API, Supabase.
 
-**Akış özeti:**
-- Başlangıç tarihinden bugüne kadar olan haftalar otomatik hesaplanır.
-- Her hafta için sırasıyla kampanya, anahtar kelime, arama terimi ve açık artırma görünürlüğü verisi Google Ads API'den çekilir.
-- Her veri seti formatlanıp ilgili Supabase tablosuna yazılır, sonra bir sonraki haftaya geçilir.
+**Flow summary:**
+- The weeks from the start date to today are calculated automatically.
+- For each week, campaign, keyword, search-term, and auction impression-share data is pulled from the Google Ads API in sequence.
+- Each dataset is formatted and written to the relevant Supabase table, then it moves on to the next week.
 
-**Durum:** Aktif (tek seferlik/manuel amaçlı).
+**Status:** Active (for one-time/manual use).
 
 ---
 
 ## Google Analytics: Weekly Report
 
-**Ne işe yarıyor:** Google Analytics 4'ten haftalık satın alma (purchase) verisini ülke ve trafik kaynağına göre gruplandırıp bir PDF rapor haline getiren ve e-posta ile gönderen otomasyon.
+**What it does:** An automation that groups weekly purchase data from Google Analytics 4 by country and traffic source, turns it into a PDF report, and sends it by email.
 
-**Tetikleyici:** Zamanlanmış — haftalık, Pazartesi öğlen.
+**Trigger:** Scheduled — weekly, Monday noon.
 
-**Kullanılan araçlar/entegrasyonlar:** Google Analytics 4 API, HTML→PDF dönüştürme, Gmail.
+**Tools/integrations used:** Google Analytics 4 API, HTML→PDF conversion, Gmail.
 
-**Akış özeti:**
-- GA4'ten ülke + kaynak/kanal bazlı satın alma ve dönüşüm oranı verisi çekilir.
-- Veriler ülkeye göre gruplanıp sıralanır, HTML rapor oluşturulur (özet kartlar + ülke bazlı tablolar).
-- HTML, PDF'e çevrilip dosya adı tarihlenir.
-- Rapor e-posta eki olarak gönderilir.
+**Flow summary:**
+- Purchase and conversion rate data by country + source/channel is pulled from GA4.
+- Data is grouped and sorted by country, and an HTML report is generated (summary cards + country-based tables).
+- The HTML is converted to PDF with a dated filename.
+- The report is sent as an email attachment.
 
-**Durum:** Aktif.
+**Status:** Active.
 
 ---
 
 ## PPC Marketing Dashboard
 
-**Ne işe yarıyor:** Google Ads verisini saatlik olarak çekip bir veritabanına senkronize eden ve React tabanlı bir web arayüzünde (tarih aralığı seçimi, kampanya/kanal kırılımı ile) canlı performans dashboard'u olarak sunan, VPS üzerinde 7/24 çalışan bir servis.
+**What it does:** A service running 24/7 on a VPS that pulls Google Ads data hourly, syncs it to a database, and presents it as a live performance dashboard in a React-based web interface (with date-range selection and campaign/channel breakdown).
 
-**Tetikleyici:** Saatlik otomatik senkronizasyon (APScheduler) + sunucu açılışında bir kez.
+**Trigger:** Hourly automatic sync (APScheduler) + once on server startup.
 
-**Kullanılan araçlar/entegrasyonlar:** Google Ads API, Supabase (Postgres), Python (FastAPI + APScheduler), React/TypeScript frontend, Docker, VPS.
+**Tools/integrations used:** Google Ads API, Supabase (Postgres), Python (FastAPI + APScheduler), React/TypeScript frontend, Docker, VPS.
 
-**Akış özeti:**
-- Sunucu açıldığında ve her saat başı, Google Ads API'den güncel veri çekilir ve veritabanına yazılır.
-- Backend, dashboard için normalize edilmiş veriyi bir API üzerinden sunar.
-- Frontend bu veriyi tarih aralığı filtresiyle grafik/tablo olarak gösterir.
+**Flow summary:**
+- On server startup and every hour, up-to-date data is pulled from the Google Ads API and written to the database.
+- The backend serves normalized data for the dashboard via an API.
+- The frontend displays this data as charts/tables with a date-range filter.
 
-**Durum:** Canlı, sürekli çalışıyor. (Meta/Yandex ve GA4/Clarity entegrasyonları için genişletme planlanıyor.)
+**Status:** Live, running continuously. (Expansion planned for Meta/Yandex and GA4/Clarity integrations.)
